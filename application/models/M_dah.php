@@ -90,11 +90,11 @@ class M_dah extends CI_Model{
 	
 	function jenis_kelamin($kelamin){
 		switch($kelamin){
-			case"pria":
+			case"1":
 				echo "Laki-laki";
 			break;
-			case"wanita":
-				echo "Perempuan";
+			case"2":
+				echo "Wanita";
 			break;
 			default:
 				echo"tidak ada kelamin banci";

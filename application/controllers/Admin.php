@@ -856,6 +856,152 @@ function cerita_delete($id){
 
 /*
 |---------------------------------
+|	Bagian Anggota
+|----------------------------------
+*/		
+
+function anggota(){
+	$this->load->database();
+	
+	$data['data']=$this->m_dah->get_data_desc('id','anggota')->result();
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/anggota',$data);
+	$this->load->view('admin/v_footer');
+}
+
+function anggota_add(){
+	$this->load->database();
+   
+   $this->load->view('admin/v_header');
+   $this->load->view('admin/buku/anggota_add');
+   $this->load->view('admin/v_footer');
+}
+
+function anggota_act(){
+	$this->load->database();
+
+   $this->form_validation->set_rules('nama','Data harus terisi','required');
+   $this->form_validation->set_rules('nis','Data harus terisi','required');
+   $this->form_validation->set_rules('jenis_kelamin','Data harus terisi','required');
+   $this->form_validation->set_rules('tanggal_lahir','Data harus terisi','required');
+   $this->form_validation->set_rules('tempat_lahir','Data harus terisi','required');
+   $this->form_validation->set_rules('tingkatan','Data harus terisi','required');
+   $this->form_validation->set_rules('tahun_masuk','Data harus terisi','required');
+
+
+   if($this->form_validation->run() != true){
+		redirect(base_url().'admin/anggota_add');
+   }else{
+   
+	   $data_pd=array(
+		   'nama' => $this->input->post('nama'),
+		   'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+		   'nis' => $this->input->post('nis'),
+		   'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+		   'tempat_lahir' => $this->input->post('tempat_lahir'),
+		   'tingkatan' => $this->input->post('tingkatan'),
+		   'tahun_masuk' => $this->input->post('tahun_masuk'),
+		   'tingkatan' => $this->input->post('tingkatan'),
+		   'tanggal' => date('Y-m-d'),
+			'status' => 1,
+
+
+	   );
+	   $this->m_dah->insert_data($data_pd,'anggota');
+	   $id_terakhir = $this->db->insert_id();
+
+	   redirect(base_url().'admin/buku/?alert=add');
+
+   }
+
+}
+
+function anggota_edit($id){
+	$this->load->database();
+	$where=array(
+		'id' =>	$id
+	);
+	$data['data']=$this->m_dah->edit_data($where,'anggota')->result();
+	
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/anggota_edit',$data);
+	$this->load->view('admin/v_footer');
+
+}
+
+function anggota_update(){
+	$this->load->database();
+
+    $this->form_validation->set_rules('nama','Data harus terisi','required');
+   $this->form_validation->set_rules('nis','Data harus terisi','required');
+   $this->form_validation->set_rules('jenis_kelamin','Data harus terisi','required');
+   $this->form_validation->set_rules('tanggal_lahir','Data harus terisi','required');
+   $this->form_validation->set_rules('tempat_lahir','Data harus terisi','required');
+   $this->form_validation->set_rules('tingkatan','Data harus terisi','required');
+   $this->form_validation->set_rules('tahun_masuk','Data harus terisi','required');
+
+
+	$id = $this->input->post('id');
+	$where=array(
+		'id' =>$id
+	);
+
+	if($this->form_validation->run() != true){
+		redirect(base_url().'admin/anggota_add');
+   }else{
+   
+	   $data_pd=array(
+            'nama' => $this->input->post('nama'),
+		   'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+		   'nis' => $this->input->post('nis'),
+		   'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+		   'tempat_lahir' => $this->input->post('tempat_lahir'),
+		   'tingkatan' => $this->input->post('tingkatan'),
+		   'tahun_masuk' => $this->input->post('tahun_masuk'),
+		   'tingkatan' => $this->input->post('tingkatan'),
+	   );
+	   $this->m_dah->update_data($where,$data_pd,'anggota');
+	   redirect(base_url().'admin/buku/?alert=update');
+
+  	 }
+
+	
+}
+
+function anggota_view($id){
+	$this->load->database();
+	$where=array(
+		'id' =>	$id
+	);
+	$data['data']=$this->m_dah->edit_data($where,'anggota')->result();
+	
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/anggota_view',$data);
+	$this->load->view('admin/v_footer');
+
+}
+
+function anggota_delete($id){
+	$this->load->database();
+	if($id == ""){
+		redirect('base_url()');
+	}else{
+		$where = array(
+			'id' => $id
+			);
+
+		$this->m_dah->delete_data($where,'anggota');
+
+		redirect('admin/buku/?alert=post-delete');
+	}
+}
+
+
+
+
+
+/*
+|---------------------------------
 |	Bagian cetak 
 |----------------------------------
 */
