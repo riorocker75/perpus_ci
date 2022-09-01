@@ -15,7 +15,7 @@
                     </div>
                     <?php foreach($data as $dt){?>
                     <div class="card-body">
-                    <form action="<?php echo base_url().'admin/anggota_act'?>" method="post" enctype='multipart/form-data'>
+                    <form action="<?php echo base_url().'admin/anggota_update'?>" method="post" enctype='multipart/form-data'>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -25,7 +25,12 @@
                                     <input type="text" class="form-control form-control-user" name="nama" value="<?php echo $dt->nama?>">
                                      <?php echo form_error('nama', '<div class="form-error">', '</div>'); ?>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">NIS</label>
+                                    <input type="text" class="form-control form-control-user" name="nis" value="<?php echo $dt->nis?>">
+                                     <?php echo form_error('nis', '<div class="form-error">', '</div>'); ?>
 
+                                </div>
 
                                 <div class="form-group">
                                 <label for="exampleInputEmail1">Jenis Kelamin</label>
@@ -40,22 +45,22 @@
 
                                  <div class="form-group">
                                     <label for="">Tempat Lahir</label>
-                                    <input type="text" class="form-control form-control-user" name="tempat_lahir" >
+                                    <input type="text" class="form-control form-control-user" name="tempat_lahir" value="<?php echo $dt->tempat_lahir?>">
                                      <?php echo form_error('tempat_lahir', '<div class="form-error">', '</div>'); ?>
 
                                 </div>
 
                                        <div class="form-group">
                                     <label for="">Tanggal Lahir</label>
-                                    <input type="date" class="form-control form-control-user" value="<?php echo date('Y-m-d')?>" name="tanggal_lahir" >
+                                    <input type="date" class="form-control form-control-user" value="<?php echo date('Y-m-d',strtotime($dt->tanggal_lahir))?>" name="tanggal_lahir" >
                                      <?php echo form_error('tanggal_lahir', '<div class="form-error">', '</div>'); ?>
 
                                 </div>
 
                                 <div class="form-group">
                                 <label for="exampleInputEmail1">Tingkatan</label>
-                                 <select class="custom-select form-control-border border-width-2"  name="tingkatan" required="required">
-                                        <option value="">--Pilih--</option>
+                                 <select class="custom-select form-control-border border-width-2"  name="tingkatan" required="required" >
+                                        <option value="<?php echo $dt->tingkatan?>" selected><?php echo $this->m_dah->tingkatan($dt->tingkatan)?></option>
                                         <option value="paud">PAUD</option>
                                         <option value="tk">Taman Kanak-kanak</option>
                                         <option value="sd">Sekolah Dasar</option>
@@ -67,7 +72,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tahun Masuk</label>
-                                <input type="number" min="1900" max="2099" step="1" value="<?php echo date('Y')?>" class="form-control" name="tahun_masuk" required>
+                                <input type="number" min="1900" max="2099" step="1" value="<?php echo date('Y')?>" class="form-control" name="tahun_masuk" value="<?php echo $dt->tahun_masuk?>" required>
                                 <?php echo form_error('tahun_masuk', '<div class="form-error">', '</div>'); ?>
 
                             </div>

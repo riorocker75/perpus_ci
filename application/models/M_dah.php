@@ -102,6 +102,25 @@ class M_dah extends CI_Model{
 
 		}
 	}
+
+	function tingkatan($status){
+		switch($status){
+			case"paud":
+				echo "PAUD";
+			break;
+			case"tk":
+				echo "Taman Kanak-kanak";
+			break;
+			case"sd":
+				echo "Sekolah Dasar";
+			break;
+			default:
+				echo"tidak ada";
+			break;
+
+		}
+	}
+
 	// format kelamin
 	// koding untuk mengganti bulan default ke bahasa indonesia
 	function format_tanggal($tanggal){

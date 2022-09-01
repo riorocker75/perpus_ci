@@ -3,7 +3,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">Tambah Anggota</h1>
-  <a href="<?php echo base_url().'admin/buku_cerita'?>" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Kembali</a>
+  <a href="<?php echo base_url().'admin/anggota_add'?>" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Kembali</a>
 </div>
 
 		<!-- Content Row -->
@@ -21,6 +21,12 @@
                                     <label for="">Nama</label>
                                     <input type="text" class="form-control form-control-user" name="nama">
                                      <?php echo form_error('nama', '<div class="form-error">', '</div>'); ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">NIS</label>
+                                    <input type="number" class="form-control form-control-user" name="nis">
+                                     <?php echo form_error('nis', '<div class="form-error">', '</div>'); ?>
                                 </div>
 
 

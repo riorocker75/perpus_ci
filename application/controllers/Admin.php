@@ -901,16 +901,13 @@ function anggota_act(){
 		   'tempat_lahir' => $this->input->post('tempat_lahir'),
 		   'tingkatan' => $this->input->post('tingkatan'),
 		   'tahun_masuk' => $this->input->post('tahun_masuk'),
-		   'tingkatan' => $this->input->post('tingkatan'),
 		   'tanggal' => date('Y-m-d'),
 			'status' => 1,
-
-
 	   );
 	   $this->m_dah->insert_data($data_pd,'anggota');
 	   $id_terakhir = $this->db->insert_id();
 
-	   redirect(base_url().'admin/buku/?alert=add');
+	   redirect(base_url().'admin/anggota/?alert=add');
 
    }
 
@@ -961,7 +958,7 @@ function anggota_update(){
 		   'tingkatan' => $this->input->post('tingkatan'),
 	   );
 	   $this->m_dah->update_data($where,$data_pd,'anggota');
-	   redirect(base_url().'admin/buku/?alert=update');
+	   redirect(base_url().'admin/anggota/?alert=update');
 
   	 }
 
@@ -992,7 +989,7 @@ function anggota_delete($id){
 
 		$this->m_dah->delete_data($where,'anggota');
 
-		redirect('admin/buku/?alert=post-delete');
+		redirect('admin/annggota/?alert=post-delete');
 	}
 }
 
