@@ -29,7 +29,7 @@
           <div class="float-right">
             <?php if ($this->session->userdata('level') == "admin") { ?>
               <a href="<?php echo base_url().'admin/anggota_add' ?>" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-home" aria-hidden="true"></i> Tambah </a>
-              <!-- <a href="<?php echo base_url().'admin/anggota_cetak' ?>" class="d-sm-inline-block btn btn-sm btn-default shadow-sm"><i class="fa fa-print" aria-hidden="true"></i> Print</a> -->
+              <a href="<?php echo base_url().'admin/anggota_cetak' ?>" class="d-sm-inline-block btn btn-sm btn-default shadow-sm"><i class="fa fa-print" aria-hidden="true"></i> Print</a>
 
             <?php } else {
             } ?>
@@ -55,7 +55,7 @@
                     <td><?php echo $n++; ?></td>
                     <td><?php echo $dt->nama; ?></td>
                     <td><?php echo $dt->nis; ?></td>
-                    <td><?php echo $dt->tmp_lhr; ?> / <?php echo date('Y-m-d',strtotime($dt->tgl_lhr)) ?></td>
+                    <td><?php echo $dt->tempat_lahir; ?> / <?php echo date('Y-m-d',strtotime($dt->tanggal_lahir)) ?></td>
                     <td><?php echo $dt->tahun_masuk; ?></td>
 
 

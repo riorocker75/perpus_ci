@@ -59,6 +59,7 @@
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> -->
   <!-- Page level custom scripts -->
+  <script src="<?php echo base_url(); ?>assets_f/vendor/select/js/bootstrap-select.min.js"></script>
 
   <!-- <script src="<?php echo base_url(); ?>assets_f/js/tinymce/tinymce.min.js"></script>
   <script src="<?php echo base_url(); ?>assets_f/js/tinymce/jquery.tinymce.min.js"></script> -->
@@ -177,6 +178,9 @@ $(function () {
     });
 });
 
+</script>
+<script>
+  $('select').selectpicker();
 </script>
 
 

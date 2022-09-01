@@ -221,18 +221,7 @@ class M_dah extends CI_Model{
 		return $this->db->query("select *from $table where status_surat='$status' ORDER BY nomor_surat DESC LIMIT 1");
 	}
 
-	function auto_nomor_surat($nomor){
-		$no= 0;
-		if($nomor == ""){
-			$no++;
-			$xi=str_pad($no,3,'0', STR_PAD_LEFT);
-			echo trim($xi);
-		}else{
-			$xi=str_pad(1, 3, '0', STR_PAD_LEFT);
-			$nb=$nomor + $xi;
-			echo str_pad($nb, 3, '0', STR_PAD_LEFT);
-		}
-	}
+	
 
 
 	function get_surat_limit($status,$limit){
@@ -289,6 +278,9 @@ class M_dah extends CI_Model{
 		return $this->db->get('surat_mohon');
 	}
 
+	function get_data_from($table,$row,$id){
+		return $this->db->query("select * from $table where $row='$id' order by id desc");
+	}
 
 
 

@@ -18,10 +18,12 @@
 	<link href="<?php echo base_url(); ?>assets_f/css/bootstrap-select.css" rel="stylesheet">
 	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> -->
 	<link href="<?php echo base_url(); ?>assets_f/css/custom.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets_f/vendor/select/css/bootstrap-select.min.css" rel="stylesheet">
 	
 	<!-- /global stylesheets -->
 <script src="<?php echo base_url(); ?>assets_f/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>assets_f/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets_f/vendor/select/js/bootstrap-select.min.js"></script>
 
 
 	<!-- /theme JS files -->
@@ -85,6 +87,12 @@
         <a class="nav-link" href="<?php echo base_url().'admin/buku_cerita/'.$this->session->userdata('penduduk_id');?>">
           <i class="fa fa-flag" aria-hidden="true"></i>
           <span>Data Buku Cerita</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url().'admin/transaksi/'.$this->session->userdata('penduduk_id');?>">
+          <i class="fa fa-book" aria-hidden="true"></i>
+          <span>Data Transaksi</span></a>
       </li>
 
 

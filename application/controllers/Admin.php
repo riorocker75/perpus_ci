@@ -926,6 +926,19 @@ function anggota_edit($id){
 
 }
 
+function anggota_view($id){
+	$this->load->database();
+	$where=array(
+		'id' =>	$id
+	);
+	$data['data']=$this->m_dah->edit_data($where,'anggota')->result();
+	
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/anggota_view',$data);
+	$this->load->view('admin/v_footer');
+
+}
+
 function anggota_update(){
 	$this->load->database();
 
@@ -965,18 +978,7 @@ function anggota_update(){
 	
 }
 
-function anggota_view($id){
-	$this->load->database();
-	$where=array(
-		'id' =>	$id
-	);
-	$data['data']=$this->m_dah->edit_data($where,'anggota')->result();
-	
-	$this->load->view('admin/v_header');
-	$this->load->view('admin/buku/anggota_view',$data);
-	$this->load->view('admin/v_footer');
 
-}
 
 function anggota_delete($id){
 	$this->load->database();
@@ -987,7 +989,12 @@ function anggota_delete($id){
 			'id' => $id
 			);
 
+		$where_tr = array(
+			'anggota_id' => $id
+		);
+
 		$this->m_dah->delete_data($where,'anggota');
+		$this->m_dah->delete_data($where_tr,'transaksi');
 
 		redirect('admin/annggota/?alert=post-delete');
 	}
@@ -995,7 +1002,140 @@ function anggota_delete($id){
 
 
 
+/*
+|---------------------------------
+|	Bagian Transaksi
+|----------------------------------
+*/
 
+
+function transaksi(){
+	$this->load->database();
+	
+	$data['data']=$this->m_dah->get_data_desc('id','transaksi')->result();
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/transaksi',$data);
+	$this->load->view('admin/v_footer');
+}
+
+function transaksi_add(){
+	$this->load->database();
+	
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/transaksi_add');
+	$this->load->view('admin/v_footer');
+}
+
+function transaksi_act(){
+	$this->load->database();
+
+   $this->form_validation->set_rules('anggota','Data harus terisi','required');
+   $this->form_validation->set_rules('buku','Data harus terisi','required');
+   $this->form_validation->set_rules('tanggal_pinjam','Data harus terisi','required');
+   $this->form_validation->set_rules('tanggal_kembali','Data harus terisi','required');
+  
+   if($this->form_validation->run() != true){
+		redirect(base_url().'admin/transaksi_add');
+   }else{
+   
+	   $data_pd=array(
+		   'anggota_id' => $this->input->post('anggota'),
+		   'buku_id' => $this->input->post('buku'),
+		   'tanggal_pinjam' => $this->input->post('tanggal_pinjam'),
+		   'tanggal_kembali' => $this->input->post('tanggal_kembali'),
+		   'ket' => $this->input->post('ket'),
+			'status' => 1,
+	   );
+	   $this->m_dah->insert_data($data_pd,'transaksi');
+	   $id_terakhir = $this->db->insert_id();
+
+	   redirect(base_url().'admin/transaksi/?alert=add');
+
+   }
+
+}
+
+function transaksi_edit($id){
+	$this->load->database();
+	$where=array(
+		'id' =>	$id
+	);
+	$data['data']=$this->m_dah->edit_data($where,'transaksi')->result();
+	
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/transaksi_edit',$data);
+	$this->load->view('admin/v_footer');
+
+}
+
+function transaksi_view($id){
+	$this->load->database();
+	$where=array(
+		'id' =>	$id
+	);
+	$data['data']=$this->m_dah->edit_data($where,'transaksi')->result();
+	
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/transaksi_view',$data);
+	$this->load->view('admin/v_footer');
+
+}
+
+function transaksi_update(){
+    $this->load->database();
+
+    $this->form_validation->set_rules('tanggal_pinjam','Data harus terisi','required');
+    $this->form_validation->set_rules('tanggal_kembali','Data harus terisi','required');
+
+    $id = $this->input->post('id');
+	$where=array(
+		'id' =>$id
+	);
+
+    if($this->form_validation->run() != true){
+        redirect(base_url().'admin/transaksi_edit');
+    }else{
+
+        $data_pd=array(
+            'tanggal_pinjam' => $this->input->post('tanggal_pinjam'),
+            'tanggal_kembali' => $this->input->post('tanggal_kembali'),
+            'ket' => $this->input->post('ket'),
+            'status' => 1,
+        );
+        $this->m_dah->update_data($where,$data_pd,'transaksi');
+
+        redirect(base_url().'admin/transaksi/?alert=update');
+
+    }
+}
+
+
+function transaksi_delete($id){
+	$this->load->database();
+	if($id == ""){
+		redirect('base_url()');
+	}else{
+		$where = array(
+			'id' => $id
+		);
+
+		$this->m_dah->delete_data($where,'transaksi');
+
+		redirect('admin/transaksi/?alert=post-delete');
+	}
+}
+
+function transaksi_kembali($id){
+	$where=array(
+		'id' =>$id
+	);
+	$data_pd=array(
+		'status' => 2,
+	);
+	$this->m_dah->update_data($where,$data_pd,'transaksi');
+
+	redirect(base_url().'admin/transaksi/?alert=update');
+}
 
 /*
 |---------------------------------
@@ -1003,19 +1143,31 @@ function anggota_delete($id){
 |----------------------------------
 */
 
-		function pegawai_cetak(){
-			$this->load->database();
-			$data['data']=$this->m_dah->get_year('pegawai','tanggal')->result();
-			$this->load->view('admin/cetak/cetak_pegawai',$data);
+function anggota_cetak(){
+	$this->load->database();
+	$data['data']=$this->m_dah->get_data_desc('id','anggota')->result();
 
-		}
+	$this->load->view('admin/cetak/cetak_anggota',$data);
+}
 
-		function mitra_cetak(){
-			$this->load->database();
-			$data['data']=$this->m_dah->get_year('mitra','tanggal')->result();
-			$this->load->view('admin/cetak/cetak_mitra',$data);
+function cerita_cetak(){
+	$this->load->database();
+	$data['data']=$this->m_dah->get_data_desc_buku('buku','2','id')->result();
 
-		}
+	$this->load->view('admin/cetak/cetak_buku_cerita',$data);
+}
+
+function sekolah_cetak(){
+	$this->load->database();
+	$data['data']=$this->m_dah->get_data_desc_buku('buku','1','id')->result();
+	$this->load->view('admin/cetak/cetak_buku_sekolah',$data);
+}
+	
+function transaksi_cetak(){
+	$this->load->database();
+	$data['data']=$this->m_dah->get_data_desc('id','transaksi')->result();
+	$this->load->view('admin/cetak/cetak_transaksi',$data);
+}
 
 		
 
