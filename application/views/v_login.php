@@ -28,7 +28,7 @@
 
     <!-- Outer Row -->
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center"  style="margin-top:100px">
 
 
       <div class="col-xl-5 col-lg-12 col-md-8">
@@ -41,7 +41,7 @@
               <!-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> -->
                <div class="text-center" style="margin-top:20px;margin-bottom:-20px;width: 100%">
               <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align: center">
-             Selamat Datang 
+             YAYASAN PENDIDIKAN MIS AZRINA
             </div>
             
            
