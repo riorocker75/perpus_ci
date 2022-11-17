@@ -61,8 +61,7 @@
                                 <label for="exampleInputEmail1">Tingkatan</label>
                                  <select class="custom-select form-control-border border-width-2"  name="tingkatan" required="required" disabled>
                                         <option value="<?php echo $dt->tingkatan?>" selected><?php echo $this->m_dah->tingkatan($dt->tingkatan)?></option>
-                                        <option value="paud">PAUD</option>
-                                        <option value="tk">Taman Kanak-kanak</option>
+                                        
                                         <option value="sd">Sekolah Dasar</option>
 
                                 </select>

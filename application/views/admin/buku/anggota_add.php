@@ -59,8 +59,6 @@
                                 <label for="exampleInputEmail1">Tingkatan</label>
                                  <select class="custom-select form-control-border border-width-2"  name="tingkatan" required="required">
                                         <option value="">--Pilih--</option>
-                                        <option value="paud">PAUD</option>
-                                        <option value="tk">Taman Kanak-kanak</option>
                                         <option value="sd">Sekolah Dasar</option>
 
                                 </select>

@@ -1037,7 +1037,8 @@ function transaksi_act(){
    if($this->form_validation->run() != true){
 		redirect(base_url().'admin/transaksi_add');
    }else{
-   
+	
+	
 	   $data_pd=array(
 		   'anggota_id' => $this->input->post('anggota'),
 		   'buku_id' => $this->input->post('buku'),
@@ -1046,9 +1047,21 @@ function transaksi_act(){
 		   'ket' => $this->input->post('ket'),
 			'status' => 1,
 	   );
-	   $this->m_dah->insert_data($data_pd,'transaksi');
-	   $id_terakhir = $this->db->insert_id();
 
+	   $where= array('id' => $this->input->post('buku'));
+	   $datas_buku=$this->m_dah->get_data_buku($this->input->post('buku'))->result();
+	   
+	   foreach($datas_buku as $dbuku){ }
+	   $jumlah = $dbuku->jumlah - 1;
+
+	   $data_buku=array(
+		'jumlah' =>$jumlah
+	   );
+
+	   $this->m_dah->update_data($where,$data_buku,'buku');
+	   $this->m_dah->insert_data($data_pd,'transaksi');
+
+	   $id_terakhir = $this->db->insert_id();
 	   redirect(base_url().'admin/transaksi/?alert=add');
 
    }
@@ -1132,6 +1145,25 @@ function transaksi_kembali($id){
 	$data_pd=array(
 		'status' => 2,
 	);
+
+	$transaksi=$this->m_dah->get_data_detail('transaksi',$id)->result();
+	foreach($transaksi as $tr){}
+
+	$buku_id= $tr->buku_id;
+
+	$where_buku= array('id' => $buku_id);
+	$datas_buku=$this->m_dah->get_data_buku($buku_id)->result();
+	
+	foreach($datas_buku as $dbuku){ }
+	$jumlah = $dbuku->jumlah + 1;
+
+	$data_buku=array(
+	 'jumlah' =>$jumlah
+	);
+
+	$this->m_dah->update_data($where_buku,$data_buku,'buku');
+
+
 	$this->m_dah->update_data($where,$data_pd,'transaksi');
 
 	redirect(base_url().'admin/transaksi/?alert=update');
@@ -1170,6 +1202,22 @@ function transaksi_cetak(){
 }
 
 		
+/*
+|---------------------------------
+|	Bagian laporan
+|----------------------------------
+*/
+
+function laporan(){
+	// $this->load->database();
+	// $data['data']=$this->m_dah->get_data_desc('id','transaksi')->result();
+	$this->load->view('admin/v_header');
+	$this->load->view('admin/buku/laporan');
+	$this->load->view('admin/v_footer');
+
+}
+
+
 
 
 

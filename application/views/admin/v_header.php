@@ -95,6 +95,12 @@
           <span>Data Transaksi</span></a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url().'admin/laporan/'.$this->session->userdata('penduduk_id');?>">
+          <i class="fa fa-print" aria-hidden="true"></i>
+          <span>Data Laporan</span></a>
+      </li>
+
 
 
      <hr class="sidebar-divider">
@@ -142,11 +148,11 @@
 	  
      
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url().'admin/settings'?>">
           <i class="fa fa-cog" aria-hidden="true"></i>
           <span>Pengaturan Web</span></a>
-      </li>
+      </li> -->
 
 
   

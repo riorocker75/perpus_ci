@@ -64,7 +64,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- end jumlah penduduk -->
 
 		<!-- end jumlah surat -->
 

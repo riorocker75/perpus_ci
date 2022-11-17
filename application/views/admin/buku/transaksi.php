@@ -79,6 +79,12 @@
                         <label class="<?php if($telat > 0){echo "badge badge-danger";}else{echo "badge badge-info";}?>">
                             <?php echo $telat; ?> hari
                         </label>
+                          <?php
+                            $denda= number_format($telat * 1000);
+                          ?>
+                        <p style="font-size:12px">
+                          Denda: <b>Rp. <?php echo $denda?></b> 
+                        </p>
 
                         <?php }elseif($dt->status == "2"){?>
                             <label class="badge badge-success">
