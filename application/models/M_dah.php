@@ -377,7 +377,7 @@ function tot_anggota(){
 }
 
 function tot_buku($status){
-	return $this->db->query("select *from buku where status='$status' ");
+	return $this->db->query("select *from buku where jenis='$status' ");
 }
 
 
