@@ -705,6 +705,10 @@ function sekolah_delete($id){
 			'id' => $id
 			);
 
+		$where_tr=array('buku_id' => $id);
+	
+		$this->m_dah->delete_data($where_tr,'transaksi');
+
 		$this->m_dah->delete_data($where,'buku');
 
 		redirect('admin/buku_sekolah/?alert=post-delete');
@@ -846,7 +850,9 @@ function cerita_delete($id){
 		$where = array(
 			'id' => $id
 			);
-
+			$where_tr=array('buku_id' => $id);
+	
+			$this->m_dah->delete_data($where_tr,'transaksi');	
 		$this->m_dah->delete_data($where,'buku');
 
 		redirect('admin/buku_cerita/?alert=post-delete');
