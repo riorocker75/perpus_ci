@@ -49,15 +49,15 @@ class M_dah extends CI_Model{
 	}
 
 	function get_data_buku($id){
-		return $this->db->query("select * from buku where id='$id' order by $id asc");
+		return $this->db->query("select * from buku where id='$id' order by id asc");
 	}
 
 	function get_data_detail($table,$id){
-		return $this->db->query("select * from $table where id='$id' order by $id asc");
+		return $this->db->query("select * from $table where id='$id' order by id asc");
 	}
 
 	function get_data_desc_buku($table, $jenis, $id){
-		return $this->db->query("select * from $table where jenis='$jenis' order by $id asc");
+		return $this->db->query("select * from $table where jenis='$jenis' order by id asc");
 	}
 
 	function insert_data($data,$table){
